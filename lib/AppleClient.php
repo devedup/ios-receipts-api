@@ -11,7 +11,7 @@ class AppleClient
     private $client;
     /** @var  string */
     private $password;
-    private $excludeOldTransactions
+    private $excludeOldTransactions;
 
     public function __construct($password, bool $excludeOldTransactions)
     {
