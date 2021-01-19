@@ -11,11 +11,13 @@ class AppleClient
     private $client;
     /** @var  string */
     private $password;
+    private $excludeOldTransactions
 
-    public function __construct($password)
+    public function __construct($password, bool $excludeOldTransactions)
     {
         $this->client = new Client();
         $this->password = $password;
+        $this->excludeOldTransactions = $excludeOldTransactions;
     }
 
     /**
@@ -31,7 +33,8 @@ class AppleClient
     {
         $data = [
             'password' => $this->password,
-            'receipt-data' => $receiptData
+            'receipt-data' => $receiptData,
+            'exclude-old-transactions' => $this->excludeOldTransactions
         ];
 
         $response = $this->client->post($endpoint, [

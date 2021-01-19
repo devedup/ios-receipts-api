@@ -16,9 +16,9 @@ class ReceiptServiceFactory
      * @param string $environment
      * @return ReceiptService
      */
-    public static function createReceiptService($password, $environment = ReceiptService::PRODUCTION_ENVIRONMENT)
+    public static function createReceiptService($password, $environment = ReceiptService::PRODUCTION_ENVIRONMENT, bool $excludeOldTransactions)
     {
-        $appleClient = new AppleClient($password);
+        $appleClient = new AppleClient($password, $excludeOldTransactions);
         $valiatorService = new ValidatorService();
 
         return new ReceiptService($appleClient, $valiatorService, $environment);
